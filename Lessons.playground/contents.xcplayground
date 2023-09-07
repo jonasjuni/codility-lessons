@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='macos' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='1 - Iterations'/>
+        <page name='2 - Arrays'/>
+        <page name='3 - Time complexity'/>
+        <page name='4 - Counting elements'/>
+        <page name='Prova'/>
+        <page name='Prova2'/>
+        <page name='5 - Prefix sums'/>
+        <page name='PlayArea'/>
+    </pages>
+</playground>
