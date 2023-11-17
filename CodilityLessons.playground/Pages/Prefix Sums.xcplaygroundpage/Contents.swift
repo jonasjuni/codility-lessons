@@ -51,21 +51,15 @@ func mushRoomPickerNaive(_ A: [Int], k: Int, m: Int) -> Int {
     var result = 0
     let rhs = n - 1 - k
     
-    print("Right")
     for p in 0...min(m, rhs) {
         
-        
+        let end = k + p
         let leftover = min(k, k - (m - 2 * p))
         let start = max(0, leftover)
-        let end = k + p
         
         result = max(result, count(x: start, y: end))
-        print(p)
-        print("\(start), \(end)")
-        print("")
     }
-    print(" ")
-    print("Left")
+
     let lhs = k
     for p in 0...min(m, lhs) {
         
@@ -74,13 +68,39 @@ func mushRoomPickerNaive(_ A: [Int], k: Int, m: Int) -> Int {
         let end = min(n - 1, leftover)
         
         result = max(result, count(x: start, y: end))
-        print(p)
-        print("\(start), \(end)")
-        print("")
     }
     
     return result
 }
-mushRoomPickerNaive([ 2, 3, 7, 5, 1, 3, 9], k: 4, m: 6)
+//mushRoomPickerNaive([ 2, 3, 7, 5, 1, 3, 9], k: 4, m: 6)
+
+//Exercises
+
+func passingCars(_ A: [Int]) -> Int {
+    let n = A.count
+    var prefixSum = [0]
+    
+    for i in 0..<n {
+        prefixSum.append(prefixSum[i] + A[i])
+    }
+    
+    func count(x: Int, y: Int) -> Int {
+        return prefixSum[y + 1] - prefixSum[x]
+    }
+    
+    var result = 0
+    for i in 0..<n {
+        if A[i] == 0 {
+            result += count(x: i, y: n - 1)
+            if result > 1_000_000_000 {
+                return -1
+            }
+        }
+    }
+    return result
+}
+
+passingCars([0, 1, 0, 1, 1])
+
 
 //: [Next](@next)
