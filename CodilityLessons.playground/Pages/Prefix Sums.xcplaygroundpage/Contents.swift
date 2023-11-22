@@ -139,7 +139,57 @@ func genomicRangeQuery(_ S: String, _ P: [Int], _ Q: [Int]) -> [Int]{
 let S = "CAGCCTA"
 let P = [2, 5, 0]
 let Q = [4, 5, 6]
-genomicRangeQuery("AC", [0, 0, 1], [0, 1, 1])
+//genomicRangeQuery("AC", [0, 0, 1], [0, 1, 1])
+
+func minAvgTwoSlice( _ A: [Int]) -> Int {
+    let n = A.count
+    var index = 0
+    var minimal = Double.infinity
+    
+    if n > 3 {
+        for i in 0..<n - 3 {
+            let fourElements = Double(A[i] + A[i + 1] + A[i + 2] + A[i + 3]) / 4.0
+            if fourElements < minimal {
+                minimal = fourElements
+                index = i
+            }
+            
+            let threeElements = Double(A[i] + A[i + 1] + A[i + 2]) / 3.0
+            if threeElements < minimal {
+                minimal = threeElements
+                index = i
+            }
+            
+            let twoElements = Double(A[i] + A[i + 1]) / 2.0
+            if twoElements < minimal {
+                minimal = twoElements
+                index = i
+            }
+        }
+    }
+
+    if n > 2 {
+        let twoElements = Double(A[n - 3] + A[n - 2]) / 2.0
+        if twoElements < minimal {
+            minimal = twoElements
+            index = n - 3
+        }
+        
+        let lastThreeElements = Double(A[n - 3] + A[n - 2] + A[n - 1]) / 3.0
+        if lastThreeElements < minimal {
+            minimal = lastThreeElements
+            index = n - 3
+        }
+    }
+    
+    let lastTwoElements = Double(A[n - 2] + A[n - 1]) / 2.0
+    if lastTwoElements < minimal {
+        minimal = lastTwoElements
+        index = n - 2
+    }
+    return index
+}
+//minAvgTwoSlice([4, 2, 2, 5, 1, 5, 8])
 
 
 //: [Next](@next)
