@@ -7,5 +7,6 @@
         <page name='Iterations'/>
         <page name='Counting Elements'/>
         <page name='Prefix Sums'/>
+        <page name='Sorting'/>
     </pages>
 </playground>
