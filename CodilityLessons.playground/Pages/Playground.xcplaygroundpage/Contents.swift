@@ -228,21 +228,22 @@ func mergeSort(A: [Int]) -> [Int] {
     var left = mergeSort(A: Array(A[..<midPoint]))
     var right = mergeSort(A: Array(A[midPoint...]))
     
-    func joinArray(left: inout [Int], right: inout [Int]) -> [Int] {
+    func mergeArrays(A: inout [Int], B: inout [Int]) -> [Int] {
         var result: [Int] = []
         
-        while !left.isEmpty && !right.isEmpty {
-            if left.first! < right.first! {
-                result.append(left.removeFirst())
+        while !A.isEmpty && !B.isEmpty {
+            if A.first! < B.first! {
+                result.append(A.removeFirst())
             } else {
-                result.append(right.removeFirst())
+                result.append(B.removeFirst())
             }
         }
-        return result + left + right
+        return result + A + B
     }
-    return joinArray(left: &left, right: &right)
+    
+    return mergeArrays(A: &left, B: &right)
 }
 
-mergeSort(A: [6, 5, 3, 1, 8, 7, 2, 4])
+mergeSort(A: [3, 2, 1, 1, 4])
 
 //: [Next](@next)
